@@ -41,48 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCEl5BYXg79EGJ9UBvF_YkbETYHldywvLQ',
-    appId: '1:820203411093:web:a85cccdd648f6a5bdb2d9c',
-    messagingSenderId: '820203411093',
-    projectId: 'login-registration-bloc-f5f33',
-    authDomain: 'login-registration-bloc-f5f33.firebaseapp.com',
-    storageBucket: 'login-registration-bloc-f5f33.firebasestorage.app',
-    measurementId: 'G-NW0CZRXSJF',
+    apiKey: 'AIzaSyCsMituqSx9axZkEruQICWDxA2S128lt-w',
+    appId: '1:489143500380:web:a1dac480cbcc652b31b099',
+    messagingSenderId: '489143500380',
+    projectId: 'firestore-1ba4c',
+    authDomain: 'firestore-1ba4c.firebaseapp.com',
+    storageBucket: 'firestore-1ba4c.firebasestorage.app',
+    measurementId: 'G-TJ8M0W30K0',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD1B0LSZI7fl5F6Xv7g-bkfJhsrMq20lPc',
-    appId: '1:820203411093:android:84a99a2254381229db2d9c',
-    messagingSenderId: '820203411093',
-    projectId: 'login-registration-bloc-f5f33',
-    storageBucket: 'login-registration-bloc-f5f33.firebasestorage.app',
+    apiKey: 'AIzaSyDVsthDXxnEe7GZjppz672WsRxv8GO88MI',
+    appId: '1:489143500380:android:d4bb630ed0822f4b31b099',
+    messagingSenderId: '489143500380',
+    projectId: 'firestore-1ba4c',
+    storageBucket: 'firestore-1ba4c.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD7QpnrDXXFGL_LT9G3g2ghtVGi2XJox78',
-    appId: '1:820203411093:ios:e581d23264939a70db2d9c',
-    messagingSenderId: '820203411093',
-    projectId: 'login-registration-bloc-f5f33',
-    storageBucket: 'login-registration-bloc-f5f33.firebasestorage.app',
+    apiKey: 'AIzaSyB16IR-G9MH-MUfxVjSLOWtpMxu7P-wcVE',
+    appId: '1:489143500380:ios:5094c93cf988f6be31b099',
+    messagingSenderId: '489143500380',
+    projectId: 'firestore-1ba4c',
+    storageBucket: 'firestore-1ba4c.firebasestorage.app',
     iosBundleId: 'com.example.loginRegistrationUserinfoBlocFirebase',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD7QpnrDXXFGL_LT9G3g2ghtVGi2XJox78',
-    appId: '1:820203411093:ios:e581d23264939a70db2d9c',
-    messagingSenderId: '820203411093',
-    projectId: 'login-registration-bloc-f5f33',
-    storageBucket: 'login-registration-bloc-f5f33.firebasestorage.app',
+    apiKey: 'AIzaSyB16IR-G9MH-MUfxVjSLOWtpMxu7P-wcVE',
+    appId: '1:489143500380:ios:5094c93cf988f6be31b099',
+    messagingSenderId: '489143500380',
+    projectId: 'firestore-1ba4c',
+    storageBucket: 'firestore-1ba4c.firebasestorage.app',
     iosBundleId: 'com.example.loginRegistrationUserinfoBlocFirebase',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCEl5BYXg79EGJ9UBvF_YkbETYHldywvLQ',
-    appId: '1:820203411093:web:6b0f257d12689788db2d9c',
-    messagingSenderId: '820203411093',
-    projectId: 'login-registration-bloc-f5f33',
-    authDomain: 'login-registration-bloc-f5f33.firebaseapp.com',
-    storageBucket: 'login-registration-bloc-f5f33.firebasestorage.app',
-    measurementId: 'G-9FSBSVCJ9N',
+    apiKey: 'AIzaSyCsMituqSx9axZkEruQICWDxA2S128lt-w',
+    appId: '1:489143500380:web:197940591bcd8ba631b099',
+    messagingSenderId: '489143500380',
+    projectId: 'firestore-1ba4c',
+    authDomain: 'firestore-1ba4c.firebaseapp.com',
+    storageBucket: 'firestore-1ba4c.firebasestorage.app',
+    measurementId: 'G-SHC3F4FTG5',
   );
+
 }
