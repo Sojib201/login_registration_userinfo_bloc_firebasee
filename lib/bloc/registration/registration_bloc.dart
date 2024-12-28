@@ -4,14 +4,15 @@ import 'package:get_storage/get_storage.dart';
 import 'package:login_registration_userinfo_bloc_firebase/bloc/registration/registration_event.dart';
 import 'package:login_registration_userinfo_bloc_firebase/bloc/registration/registration_state.dart';
 
+import '../../helper/auth_helper.dart';
 import '../../storage_service/storage_service.dart';
-
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   final List<String> item = ['Supervisor', 'Representitive', 'ZM'];
   String? selectedItem;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final AuthHelper helper = AuthHelper();
   final GetStorage _storage = GetStorage();
 
   RegistrationBloc() : super(SignUpInitial()) {
@@ -32,7 +33,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           email: event.email,
           password: event.password,
         );
-        _storage.write('isLoggedIn', true);
+        //_storage.write('isLoggedIn', true);
         _storage.write('uid', user.user?.uid);
         StorageService.saveUserInfo({
           'name': event.name,
@@ -42,7 +43,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         });
         emit(SignUpSuccess('Sign-up successful'));
       } catch (e) {
-        emit(SignUpFailure(e.toString()));
+        emit(SignUpFailure('Sign-up Failed'));
       }
     });
   }

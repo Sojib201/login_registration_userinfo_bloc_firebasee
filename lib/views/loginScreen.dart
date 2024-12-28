@@ -51,13 +51,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.message)),
                   );
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UserInfoScreen(),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => UserInfoScreen(),
+                  //   ),
+                  // );
                 } else if (state is SignInFailure) {
+                  print(state.error);
+                  print('dsgdsg');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.error)),
                   );
@@ -65,19 +67,22 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               builder: (context, state) {
                 if (state is SignInLoading) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return ElevatedButton(
+                    onPressed: () {
+                      final email = emailController.text.trim();
+                      final password = passwordController.text.trim();
+                      context.read<SignInBloc>().add(
+                            PerformSignIn(email, password),
+                          );
+                    },
+                    child: SuccessButtonChild("Sign In"),
+                    style: AppButtonStyle(),
+                  );
                 }
-                return ElevatedButton(
-                  onPressed: () {
-                    final email = emailController.text.trim();
-                    final password = passwordController.text.trim();
-                    context
-                        .read<SignInBloc>()
-                        .add(PerformSignIn(email, password));
-                  },
-                  child: SuccessButtonChild("Sign In"),
-                  style: AppButtonStyle(),
-                );
               },
             ),
             const SizedBox(height: 15),

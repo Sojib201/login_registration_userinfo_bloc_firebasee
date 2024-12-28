@@ -10,5 +10,5 @@ class PerformSignIn extends SignInEvent {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [email,password];
+  List<Object?> get props => [email, password];
 }

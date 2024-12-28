@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:login_registration_userinfo_bloc_firebase/bloc/logout/logout_bloc.dart';
+import 'package:login_registration_userinfo_bloc_firebase/bloc/logout/logout_state.dart';
 import 'package:login_registration_userinfo_bloc_firebase/views/loginScreen.dart';
+import '../bloc/logout/logout_event.dart';
 import '../storage_service/storage_service.dart';
 
 class UserInfoScreen extends StatelessWidget {
@@ -16,21 +20,47 @@ class UserInfoScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('User Info'),
         actions: [
-          IconButton(
-            onPressed: () {
-              //StorageService.clearStorage();
+          BlocBuilder<LogoutBloc, LogoutState>(
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () async {
+                  // Clear storage before logging out
+                  //StorageService.clearStorage();
+                  // Trigger the logout event
+                  context.read<LogoutBloc>().add(Logout());
 
-              Navigator.pop(context);
-              storage.remove('isLoggedIn');
-
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen(),),
+                  );
+                },
+                icon:  Icon(Icons.logout),
               );
             },
-            icon: const Icon(Icons.logout),
           ),
         ],
+        // actions: [
+        //   BlocBuilder<LogoutBloc, LogoutState>(
+        //     builder: (context, state) {
+        //       return IconButton(
+        //         onPressed: () {
+        //           //StorageService.clearStorage();
+        //
+        //           context.read<LogoutBloc>().add(Logout());
+        //
+        //           // Navigator.pop(context);
+        //           // storage.remove('isLoggedIn');
+        //           //
+        //           // Navigator.pushReplacement(
+        //           //   context,
+        //           //   MaterialPageRoute(builder: (context) => const LoginScreen()),
+        //           // );
+        //         },
+        //         icon: const Icon(Icons.logout),
+        //       );
+        //     },
+        //   ),
+        // ],
       ),
       body: Center(
         child: userInfo != null

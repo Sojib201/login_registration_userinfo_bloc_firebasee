@@ -121,13 +121,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const LoginScreen(),
+                        builder: (context) => LoginScreen(),
                       ),
                     );
                   } else if (state is SignUpFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.error)),
+                      SnackBar(
+                        content: Text(state.error),
+                      ),
                     );
                   }
                 },
@@ -158,7 +159,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   );
                 },
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               Container(
                 alignment: Alignment.center,
                 child: Column(
