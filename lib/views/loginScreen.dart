@@ -49,18 +49,22 @@ class _LoginScreenState extends State<LoginScreen> {
               listener: (context, state) {
                 if (state is SignInSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.message)),
+                    SnackBar(
+                      content: Text(state.message),
+                    ),
                   );
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => UserInfoScreen(),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UserInfoScreen(),
+                    ),
+                  );
                 } else if (state is SignInFailure) {
                   print(state.error);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.error)),
+                    SnackBar(
+                      content: Text(state.error),
+                    ),
                   );
                 }
               },
@@ -74,6 +78,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       final email = emailController.text.trim();
                       final password = passwordController.text.trim();
+
+                      // final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                      // if (!emailRegex.hasMatch(email)) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text('Please enter a valid email address'),
+                      //     ),
+                      //   );
+                      //   return;
+                      // }
+                      //
+                      // if (password.length < 6) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text(
+                      //           'Password must be at least 6 characters long'),
+                      //     ),
+                      //   );
+                      //   return;
+                      // }
+
                       context.read<SignInBloc>().add(
                             PerformSignIn(email, password),
                           );

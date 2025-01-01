@@ -175,25 +175,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       //   return;
                       // }
 
-                      final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
-                      if (!emailRegex.hasMatch(email)) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Please enter a valid email address'),
-                          ),
-                        );
-                        return;
-                      }
-
-                      if (password.length < 6) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                                'Password must be at least 6 characters long'),
-                          ),
-                        );
-                        return;
-                      }
+                      // final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                      // if (!emailRegex.hasMatch(email)) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text('Please enter a valid email address'),
+                      //     ),
+                      //   );
+                      //   return;
+                      // }
+                      //
+                      // if (password.length < 6) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text(
+                      //           'Password must be at least 6 characters long'),
+                      //     ),
+                      //   );
+                      //   return;
+                      // }
 
                       // final phoneRegex = RegExp(r'^\d{10}$');
                       // if (!phoneRegex.hasMatch(phone)) {

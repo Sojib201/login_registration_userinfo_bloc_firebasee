@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:login_registration_userinfo_bloc_firebase/bloc/registration/registration_state.dart';
 import 'package:login_registration_userinfo_bloc_firebase/helper/auth_helper.dart';
 
 import 'login_event.dart';
@@ -20,22 +23,20 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             email: event.email,
             password: event.password,
           );
+
           //_storage.write('isLoggedIn', true);
           //_storage.write('uid', user.user?.uid);
-          emit(
-            SignInSuccess('Sign-in successful'),
-          );
-        } on FirebaseAuthException catch (e) {
-          if (e.code == 'weak-password') {
-            print('The password provided is too weak.');
-          } else if (e.code == 'email-already-in-use') {
-            print('The account already exists for that email.');
+          if (_auth.currentUser!.uid.isNotEmpty) {
+            emit(
+              SignInSuccess('Sign-in successful'),
+            );
+          } else {
+            print("sign up failed");
           }
-        }
-        catch (e) {
-          emit(
-            SignInFailure('Sign-in Failed'),
-          );
+        } catch (e) {
+          // emit(
+          //   SignInFailure('Sign-in Failed'),
+          // );
         }
       },
     );
