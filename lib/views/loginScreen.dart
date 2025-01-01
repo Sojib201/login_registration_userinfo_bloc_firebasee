@@ -59,7 +59,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   // );
                 } else if (state is SignInFailure) {
                   print(state.error);
-                  print('dsgdsg');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.error)),
                   );

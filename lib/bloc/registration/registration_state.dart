@@ -17,7 +17,8 @@ class SignUpLoading extends RegistrationState {
 class SignUpSuccess extends RegistrationState {
   final String message;
 
-  SignUpSuccess(this.message);
+
+  SignUpSuccess(this.message,);
 
   @override
   // TODO: implement props
@@ -26,6 +27,8 @@ class SignUpSuccess extends RegistrationState {
 
 class SignUpFailure extends RegistrationState {
   final String error;
+  //final String code;
+
 
   SignUpFailure(this.error);
 

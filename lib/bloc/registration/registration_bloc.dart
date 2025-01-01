@@ -34,7 +34,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           password: event.password,
         );
         //_storage.write('isLoggedIn', true);
-        _storage.write('uid', user.user?.uid);
+        //_storage.write('uid', user.user?.uid);
         StorageService.saveUserInfo({
           'name': event.name,
           'phone': event.phone,
@@ -42,8 +42,18 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           'dropDown': event.userType
         });
         emit(SignUpSuccess('Sign-up successful'));
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          emit(SignUpFailure('The password provided is too weak,'));
+          print('The password provided is too weak');
+        } else if (e.code == 'email-already-in-use') {
+          emit(SignUpFailure('The account already exists for that email'));
+          print('The account already exists for that email');
+        }
+        emit(DropDownLoadedState(item, selectedItem));
       } catch (e) {
-        emit(SignUpFailure('Sign-up Failed'));
+        //emit(SignUpFailure());
+        //emit(DropDownLoadedState(item, selectedItem));
       }
     });
   }

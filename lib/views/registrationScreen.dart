@@ -65,7 +65,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         color: Colors.black,
                       ),
                       value: state.selectedItem,
-                      hint: Text(
+                      hint: const Text(
                         'User Type',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
@@ -136,6 +136,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   if (state is SignUpLoading) {
                     return Center(child: CircularProgressIndicator());
                   }
+
                   return ElevatedButton(
                     onPressed: () {
                       final email = emailController.text.trim();
@@ -147,16 +148,119 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       final currentState =
                           context.read<RegistrationBloc>().state;
                       String? userType;
+
                       if (currentState is DropDownLoadedState) {
                         userType = currentState.selectedItem;
                       }
 
+                      if (userType == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please select a user type'),
+                          ),
+                        );
+                        return;
+                      }
+
+                      // if (email.isEmpty ||
+                      //     password.isEmpty ||
+                      //     name.isEmpty ||
+                      //     phone.isEmpty ||
+                      //     age.isEmpty) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     SnackBar(
+                      //       content: Text('Please fill in all fields'),
+                      //     ),
+                      //   );
+                      //   return;
+                      // }
+
+                      final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                      if (!emailRegex.hasMatch(email)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please enter a valid email address'),
+                          ),
+                        );
+                        return;
+                      }
+
+                      if (password.length < 6) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                                'Password must be at least 6 characters long'),
+                          ),
+                        );
+                        return;
+                      }
+
+                      // final phoneRegex = RegExp(r'^\d{10}$');
+                      // if (!phoneRegex.hasMatch(phone)) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text(
+                      //           'Please enter a valid 10-digit phone number'),
+                      //     ),
+                      //   );
+                      //   return;
+                      // }
+
+                      // final ageInt = int.tryParse(age);
+                      // if (ageInt == null || ageInt <= 0) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text('Please enter a valid age'),
+                      //     ),
+                      //   );
+                      //   return;
+                      // }
+
                       context.read<RegistrationBloc>().add(PerformRegistration(
-                          email, password, name, phone, age, userType!));
+                          email, password, name, phone, age, userType));
                     },
                     child: SuccessButtonChild("Registration"),
                     style: AppButtonStyle(),
                   );
+
+                  // return ElevatedButton(
+                  //   onPressed: () {
+                  //     final email = emailController.text.trim();
+                  //     final password = passwordController.text.trim();
+                  //     final name = nameController.text.trim();
+                  //     final phone = phoneController.text.trim();
+                  //     final age = ageController.text.trim();
+                  //
+                  //     final currentState =
+                  //         context.read<RegistrationBloc>().state;
+                  //     String? userType;
+                  //
+                  //     // if (currentState is DropDownLoadedState) {
+                  //     //   userType = currentState.selectedItem;
+                  //     // }
+                  //     //
+                  //     // context.read<RegistrationBloc>().add(PerformRegistration(
+                  //     //     email, password, name, phone, age, userType!));
+                  //
+                  //     if (currentState is DropDownLoadedState) {
+                  //       userType = currentState.selectedItem;
+                  //     }
+                  //
+                  //     if (userType == null) {
+                  //       ScaffoldMessenger.of(context).showSnackBar(
+                  //         SnackBar(
+                  //           content: Text('Please select a user type'),
+                  //         ),
+                  //       );
+                  //       return;
+                  //     }
+                  //
+                  //     context.read<RegistrationBloc>().add(PerformRegistration(
+                  //         email, password, name, phone, age, userType));
+                  //   },
+                  //   child: SuccessButtonChild("Registration"),
+                  //   style: AppButtonStyle(),
+                  // );
                 },
               ),
               SizedBox(
