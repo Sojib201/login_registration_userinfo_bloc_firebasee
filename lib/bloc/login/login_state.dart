@@ -35,12 +35,12 @@ class SignInFailure extends SignInState {
 }
 
 class signFailure extends SignInState{
-  final String code;
+  final String error;
 
-  signFailure(this.code);
+  signFailure(this.error);
 
   @override
   // TODO: implement props
-  List<Object?> get props => [code];
+  List<Object?> get props => [error];
 
 }

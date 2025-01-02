@@ -8,7 +8,7 @@ import '../../helper/auth_helper.dart';
 import '../../storage_service/storage_service.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  final List<String> item = ['Supervisor', 'Representitive', 'ZM'];
+  final List<String> dropdownlist = ['Supervisor', 'Representitive', 'ZM'];
   String? selectedItem;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,13 +17,13 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
 
   RegistrationBloc() : super(SignUpInitial()) {
     on<LoadDropDownList>((event, emit) {
-      emit(DropDownLoadedState(item, selectedItem));
+      emit(DropDownLoadedState(dropdownlist, selectedItem));
     });
 
     on<DropdownItemSelected>((event, emit) {
       selectedItem = event.itemSelect;
 
-      emit(DropDownLoadedState(item, selectedItem));
+      emit(DropDownLoadedState(dropdownlist, selectedItem));
     });
 
     on<PerformRegistration>((event, emit) async {
@@ -33,8 +33,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           email: event.email,
           password: event.password,
         );
-        //_storage.write('isLoggedIn', true);
-        //_storage.write('uid', user.user?.uid);
+        // _storage.write('isLoggedIn', true);
+        // _storage.write('uid', user.user?.uid);
         StorageService.saveUserInfo({
           'name': event.name,
           'phone': event.phone,
@@ -50,7 +50,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           emit(SignUpFailure('The account already exists for that email'));
           print('The account already exists for that email');
         }
-        emit(DropDownLoadedState(item, selectedItem));
+        emit(DropDownLoadedState(dropdownlist, selectedItem));
       } catch (e) {
         //emit(SignUpFailure());
         //emit(DropDownLoadedState(item, selectedItem));

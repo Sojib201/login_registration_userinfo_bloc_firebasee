@@ -44,7 +44,7 @@ class AuthHelper {
     }
   }
 
-  Future<void> SignIn({
+  Future SignIn({
     required String email,
     required String password,
   }) async {
@@ -85,8 +85,21 @@ class AuthHelper {
       //   }
       // }
 
-    }catch (e) {
-      print(e);
+    }
+    // on FirebaseAuthException catch(e){
+    //   if (e.code == 'user-not-found') {
+    //     print('No user found for this email');
+    //   } else if (e.code == 'wrong-password') {
+    //     print( 'Incorrect password');
+    //   } else if (e.code == 'invalid-email') {
+    //     print('The email address is not valid');
+    //   } else {
+    //     print('Sign-in failed. Please try again');
+    //   }
+    // }
+
+    catch (e) {
+      //print(e);
     }
   }
 

@@ -81,25 +81,25 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           SignInLoading(),
         );
 
-        // if (event.email.isEmpty || event.password.isEmpty) {
-        //   emit(SignInFailure('Email and password cannot be empty.'));
-        //   return;
-        // }
-        //
-        // final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
-        // if (!emailRegex.hasMatch(event.email)) {
-        //   emit(
-        //     SignInFailure('Please enter a valid email address.'),
-        //   );
-        //   return;
-        // }
-        //
-        // if (event.password.length < 6) {
-        //   emit(
-        //     SignInFailure('Password must be at least 6 characters long.'),
-        //   );
-        //   return;
-        // }
+        if (event.email.isEmpty || event.password.isEmpty) {
+          emit(SignInFailure('Email and password cannot be empty.'));
+          return;
+        }
+
+        final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+        if (!emailRegex.hasMatch(event.email)) {
+          emit(
+            SignInFailure('Please enter a valid email address.'),
+          );
+          return;
+        }
+
+        if (event.password.length < 6) {
+          emit(
+            SignInFailure('Password must be at least 6 characters long.'),
+          );
+          return;
+        }
 
         try {
           await helper.SignIn(
@@ -120,23 +120,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
               SignInFailure('Wrong email or password'),
             );
           }
-        } on FirebaseAuthException catch (e) {
-
-          String errorMessage;
-
-          if (e.code == 'user-not-found') {
-            errorMessage = 'No user found for this email';
-          } else if (e.code == 'wrong-password') {
-            errorMessage = 'Incorrect password';
-          } else if (e.code == 'invalid-email') {
-            errorMessage = 'The email address is not valid';
-          } else {
-            errorMessage = 'Sign-in failed. Please try again';
-          }
-
-          emit(
-            signFailure(errorMessage),
-          );
         } catch (e) {
           emit(
             SignInFailure('An unexpected error occurred. Please try again.'),
