@@ -50,6 +50,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               DropdownItemSelected(newValue!),
                             );
                       },
+
                       dropdownColor: Colors.white,
                       icon: Icon(Icons.arrow_drop_down),
                       iconSize: 35,
@@ -71,7 +72,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       items: state.dropdownlist.map((String item) {
-                        return DropdownMenuItem<String>(
+                        return DropdownMenuItem(
                           value: item,
                           child: Text(item),
                         );
