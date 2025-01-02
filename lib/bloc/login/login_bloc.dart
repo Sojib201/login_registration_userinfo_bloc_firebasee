@@ -82,21 +82,21 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         );
 
         if (event.email.isEmpty || event.password.isEmpty) {
-          emit(SignInFailure('Email and password cannot be empty.'));
+          emit(SignInFailure('Email and password cannot be empty'));
           return;
         }
 
         final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
         if (!emailRegex.hasMatch(event.email)) {
           emit(
-            SignInFailure('Please enter a valid email address.'),
+            SignInFailure('Please enter a valid email address'),
           );
           return;
         }
 
         if (event.password.length < 6) {
           emit(
-            SignInFailure('Password must be at least 6 characters long.'),
+            SignInFailure('Password must be at least 6 characters long'),
           );
           return;
         }

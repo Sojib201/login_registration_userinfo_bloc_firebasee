@@ -29,7 +29,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     on<PerformRegistration>((event, emit) async {
       emit(SignUpLoading());
       try {
-        final UserCredential user = await _auth.createUserWithEmailAndPassword(
+        await _auth.createUserWithEmailAndPassword(
           email: event.email,
           password: event.password,
         );

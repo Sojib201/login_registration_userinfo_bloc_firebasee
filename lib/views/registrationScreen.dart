@@ -162,38 +162,34 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         return;
                       }
 
-                      // if (email.isEmpty ||
-                      //     password.isEmpty ||
-                      //     name.isEmpty ||
-                      //     phone.isEmpty ||
-                      //     age.isEmpty) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(
-                      //       content: Text('Please fill in all fields'),
-                      //     ),
-                      //   );
-                      //   return;
-                      // }
+                      if (email.isEmpty || password.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Email and password cannot be empty'),
+                          ),
+                        );
+                        return;
+                      }
 
-                      // final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
-                      // if (!emailRegex.hasMatch(email)) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(
-                      //       content: Text('Please enter a valid email address'),
-                      //     ),
-                      //   );
-                      //   return;
-                      // }
-                      //
-                      // if (password.length < 6) {
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(
-                      //       content: Text(
-                      //           'Password must be at least 6 characters long'),
-                      //     ),
-                      //   );
-                      //   return;
-                      // }
+                      final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                      if (!emailRegex.hasMatch(email)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please enter a valid email address'),
+                          ),
+                        );
+                        return;
+                      }
+
+                      if (password.length < 6) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                                'Password must be at least 6 characters long'),
+                          ),
+                        );
+                        return;
+                      }
 
                       // final phoneRegex = RegExp(r'^\d{10}$');
                       // if (!phoneRegex.hasMatch(phone)) {
